@@ -14,6 +14,17 @@ builder.Services.AddDbContext<StoreContext>(options =>
     }
 );
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("myPolicy",
+    builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,6 +35,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("myPolicy");
 
 app.UseAuthorization();
 
