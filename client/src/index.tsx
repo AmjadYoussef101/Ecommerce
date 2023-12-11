@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './app/layouts/styles.css';
-import App from './app/layouts/App';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/@fontsource/roboto/300.css';
 import '../node_modules/@fontsource/roboto/400.css';
 import '../node_modules/@fontsource/roboto/500.css';
 import '../node_modules/@fontsource/roboto/700.css';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './app/router/routes';
+import { StoreProvider } from './app/context/StoreContext';
 
 
 const root = ReactDOM.createRoot(
@@ -14,7 +16,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <StoreProvider>
+    <RouterProvider router={router} />
+    </StoreProvider>
   </React.StrictMode>
 );
 
